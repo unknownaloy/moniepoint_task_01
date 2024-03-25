@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:moniepoint_task/widgets/buy_offers_ui.dart';
+import 'package:moniepoint_task/widgets/rent_offers_ui.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -43,10 +45,37 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         child: const Column(
-           crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('Hi, Marina'),
-            Text("let's select your perfect place"),
+            Text(
+              'Hi, Marina',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              "let's select your perfect place",
+              style: TextStyle(
+                fontSize: 40,
+                color: Colors.black,
+                height: 1,
+              ),
+            ),
+            SizedBox(
+              height: 32,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(flex: 1, child: BuyOffersUi(),),
+                SizedBox(width: 10,),
+                Expanded(flex: 1, child: RentOffersUi(),),
+              ],
+            ),
           ],
         ),
       ),
