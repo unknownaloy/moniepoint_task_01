@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:moniepoint_task/util.dart';
 
 class RentOffersUi extends StatelessWidget {
-  const RentOffersUi({super.key});
+  const RentOffersUi({
+    required this.value,
+    super.key,
+  });
+
+  final double value;
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +32,9 @@ class RentOffersUi extends StatelessWidget {
           Radius.circular(24),
         ),
       ),
-      child: const Column(
+      child: Column(
         children: [
-          Text(
+          const Text(
             "RENT",
             style: TextStyle(
               fontWeight: FontWeight.w500,
@@ -36,21 +42,21 @@ class RentOffersUi extends StatelessWidget {
               fontSize: 16,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 24,
           ),
           Text(
-            "2212",
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
+            Util.addSpaceTo4DigitNumber(value.toInt()),
+            style: const TextStyle(
+              fontWeight: FontWeight.w700,
               color: Color(0xffA5957E),
               fontSize: 40,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          Text(
+          const Text(
             "offers",
             style: TextStyle(
               fontWeight: FontWeight.w500,
