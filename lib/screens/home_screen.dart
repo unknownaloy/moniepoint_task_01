@@ -49,7 +49,9 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  SizedBox(height: 64,),
+                  SizedBox(
+                    height: 64,
+                  ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
@@ -103,56 +105,85 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SliverFillRemaining(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.all(8),
+              hasScrollBody: false,
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(32),
+                  ),
+                  color: Colors.white,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Container(
                       width: double.infinity,
+                      height: 208,
                       decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(32),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(32),
                         ),
-                        color: Colors.white,
+                        color: Colors.grey,
                       ),
-                      child: Column(
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            width: double.infinity,
-                            height: 192,
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(32),
-                              ),
-                              color: Colors.grey,
+                          Expanded(
+                            // flex: 1,
+                            child: Container(
+                              height: 384,
+                              decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(32),
+                                  ),
+                                  color: Colors.blue),
                             ),
                           ),
                           const SizedBox(
-                            height: 8,
+                            width: 10,
                           ),
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          //   children: [
-                          //     Expanded(
-                          //       flex: 1,
-                          //       child: Container(
-                          //         height: 240,
-                          //         decoration: const BoxDecoration(
-                          //           borderRadius: BorderRadius.all(
-                          //             Radius.circular(32),
-                          //           ),
-                          //         ),
-                          //       ),
-                          //     ),
-                          //     // Expanded(flex: 1,),
-                          //   ],
-                          // ),
+                          Expanded(
+                            // flex: 1,
+                            child: Column(
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    decoration: const BoxDecoration(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(32),
+                                      ),
+                                      color: Colors.red,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    decoration: const BoxDecoration(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(32),
+                                      ),
+                                      color: Colors.red,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],
