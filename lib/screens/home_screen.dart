@@ -10,7 +10,6 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       // extendBodyBehindAppBar: true,
       body: Container(
-        // padding: const EdgeInsets.only(top: 160),
         width: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -29,19 +28,45 @@ class HomeScreen extends StatelessWidget {
               elevation: 0,
               centerTitle: false,
               title: Container(
-                height: 48,
-                width: 192,
+                padding: const EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 16,
+                ),
+                height: 56,
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.all(
                     Radius.circular(10),
                   ),
                 ),
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.location_on,
+                      color: Color(0xffA5957E),
+                      size: 18,
+                    ),
+                    SizedBox(
+                      width: 4,
+                    ),
+                    Text(
+                      "Saint Petersburg",
+                      style: TextStyle(
+                        color: Color(0xffA5957E),
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               actions: const [
                 CircleAvatar(
                   radius: 48,
                   backgroundColor: Colors.red,
+                  backgroundImage:
+                      AssetImage('assets/images/profile.jpg'),
                 ),
               ],
             ),
@@ -125,7 +150,11 @@ class HomeScreen extends StatelessWidget {
                         borderRadius: BorderRadius.all(
                           Radius.circular(32),
                         ),
-                        color: Colors.grey,
+                        // color: Colors.grey,
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/kitchen.jpg'),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                     const SizedBox(
@@ -140,10 +169,14 @@ class HomeScreen extends StatelessWidget {
                             child: Container(
                               height: 384,
                               decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(32),
-                                  ),
-                                  color: Colors.blue),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(32),
+                                ),
+                                image: DecorationImage(
+                                  image: AssetImage('assets/images/chair_on_rug.jpg'),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
                           ),
                           const SizedBox(
@@ -159,7 +192,10 @@ class HomeScreen extends StatelessWidget {
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(32),
                                       ),
-                                      color: Colors.red,
+                                      image: DecorationImage(
+                                        image: AssetImage('assets/images/window.jpg'),
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -172,7 +208,10 @@ class HomeScreen extends StatelessWidget {
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(32),
                                       ),
-                                      color: Colors.red,
+                                      image: DecorationImage(
+                                        image: AssetImage('assets/images/sitting_room.jpg'),
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
                                 ),
