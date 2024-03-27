@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moniepoint_task/enums/nav_enum.dart';
 import 'package:moniepoint_task/screens/home_screen.dart';
+import 'package:moniepoint_task/screens/map_screen.dart';
 import 'package:moniepoint_task/widgets/custom_nav_item.dart';
 
 class MoniepointHome extends StatefulWidget {
@@ -21,6 +22,10 @@ class _MoniepointHomeState extends State<MoniepointHome>
   Widget _displayedScreen(NavEnum value) {
     if (value.isHome) {
       return const HomeScreen();
+    }
+
+    if (value.isSearch) {
+      return const MapScreen();
     }
 
     return Container(
