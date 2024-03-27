@@ -338,7 +338,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         ImageCard(
                           assetPath: 'assets/images/kitchen.jpg',
                           sliderText: "Gladkova St., 25",
-                          textOpacity: _kitchenAnimation.value == 1 ? _kitchenAnimation.value : 0,
+                          textOpacity: _kitchenAnimation.value == 1
+                              ? _kitchenAnimation.value
+                              : 0,
                           sliderTextAlignment: Alignment.center,
                           sliderWidth: _kitchenAnimation.value *
                               MediaQuery.of(context).size.width,
@@ -356,7 +358,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 child: ImageCard(
                                   assetPath: 'assets/images/chair_on_rug.jpg',
                                   sliderText: "Gubina St., 11",
-                                  textOpacity: _bottomImageAnimation.value == 1 ? _bottomImageAnimation.value : 0,
+                                  textOpacity: _bottomImageAnimation.value == 1
+                                      ? _bottomImageAnimation.value
+                                      : 0,
                                   height: 384,
                                   sliderWidth: _bottomImageAnimation.value *
                                       MediaQuery.of(context).size.width,
@@ -372,7 +376,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                       child: ImageCard(
                                         assetPath: 'assets/images/window.jpg',
                                         sliderText: "Trefoleva St., 43",
-                                        textOpacity: _windowAnimation.value == 1 ? _windowAnimation.value : 0,
+                                        textOpacity: _windowAnimation.value == 1
+                                            ? _windowAnimation.value
+                                            : 0,
                                         sliderWidth: _windowAnimation.value *
                                             MediaQuery.of(context).size.width,
                                       ),
@@ -385,7 +391,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                         assetPath:
                                             'assets/images/sitting_room.jpg',
                                         sliderText: "Sedova St., 22",
-                                        textOpacity: _bottomImageAnimation.value == 1 ? _bottomImageAnimation.value : 0,
+                                        textOpacity:
+                                            _bottomImageAnimation.value == 1
+                                                ? _bottomImageAnimation.value
+                                                : 0,
                                         sliderWidth: _bottomImageAnimation
                                                 .value *
                                             MediaQuery.of(context).size.width,
