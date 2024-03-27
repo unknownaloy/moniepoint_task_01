@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moniepoint_task/widgets/buy_offers_ui.dart';
+import 'package:moniepoint_task/widgets/image_card.dart';
 import 'package:moniepoint_task/widgets/rent_offers_ui.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -24,8 +25,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late final Animation<Offset> _slideAnimation;
 
   late final Animation<double> _kitchenAnimation;
-
   late final Animation<double> _windowAnimation;
+
+  late final Animation<double> _bottomImageAnimation;
 
   @override
   void initState() {
@@ -109,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         curve: const Interval(
           0.40,
           0.50,
-          curve: Curves.easeIn,
+          curve: Curves.decelerate,
         ),
       ),
     );
@@ -120,6 +122,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         curve: const Interval(
           0.55,
           0.65,
+          curve: Curves.easeIn,
+        ),
+      ),
+    );
+
+    _bottomImageAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: const Interval(
+          0.55,
+          0.75,
           curve: Curves.easeIn,
         ),
       ),
@@ -322,48 +335,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Container(
-                          width: double.infinity,
-                          alignment: Alignment.bottomLeft,
-                          padding: const EdgeInsets.only(
-                            left: 10,
-                            bottom: 10,
-                            right: 10,
-                          ),
+                        ImageCard(
+                          assetPath: 'assets/images/kitchen.jpg',
+                          sliderText: "Gladkova St., 25",
+                          textOpacity: _kitchenAnimation.value == 1 ? _kitchenAnimation.value : 0,
+                          sliderTextAlignment: Alignment.center,
+                          sliderWidth: _kitchenAnimation.value *
+                              MediaQuery.of(context).size.width,
+                          sliderHeight: 56,
                           height: 208,
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(32),
-                            ),
-                            // color: Colors.grey,
-                            image: DecorationImage(
-                              image: AssetImage('assets/images/kitchen.jpg'),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          child: Container(
-                            padding: const EdgeInsets.all(2),
-                            width: (_kitchenAnimation.value *
-                                MediaQuery.of(context).size.width) + 56,
-                            height: 56,
-                            decoration: BoxDecoration(
-                              color: const Color(0xffA5957E).withAlpha(248),
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(32),
-                              ),
-                            ),
-                            child: const Align(
-                              alignment: Alignment.centerRight,
-                              child: CircleAvatar(
-                                radius: 28,
-                                backgroundColor: Colors.white,
-                                child: Icon(
-                                  Icons.chevron_right,
-                                  color: Color(0xffA5957E),
-                                ),
-                              ),
-                            ),
-                          ),
                         ),
                         const SizedBox(
                           height: 10,
@@ -373,19 +353,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Expanded(
-                                child: Container(
+                                child: ImageCard(
+                                  assetPath: 'assets/images/chair_on_rug.jpg',
+                                  sliderText: "Gubina St., 11",
+                                  textOpacity: _bottomImageAnimation.value == 1 ? _bottomImageAnimation.value : 0,
                                   height: 384,
-                                  decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(32),
-                                    ),
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                        'assets/images/chair_on_rug.jpg',
-                                      ),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
+                                  sliderWidth: _bottomImageAnimation.value *
+                                      MediaQuery.of(context).size.width,
                                 ),
                               ),
                               const SizedBox(
@@ -395,64 +369,26 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                 child: Column(
                                   children: [
                                     Expanded(
-                                      child: Container(
-                                        width: double.infinity,
-                                        alignment: Alignment.bottomLeft,
-                                        padding: const EdgeInsets.only(
-                                          left: 10, bottom: 10, right: 0,
-                                        ),
-                                        decoration: const BoxDecoration(
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(32),
-                                          ),
-                                          image: DecorationImage(
-                                            image: AssetImage(
-                                              'assets/images/window.jpg',
-                                            ),
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                        child: Container(
-                                          padding: const EdgeInsets.all(2),
-                                          width: (_windowAnimation.value *
-                                              MediaQuery.of(context).size.width) + 56,
-                                          height: 56,
-                                          decoration: BoxDecoration(
-                                            color: const Color(0xffA5957E).withAlpha(248),
-                                            borderRadius: const BorderRadius.all(
-                                              Radius.circular(32),
-                                            ),
-                                          ),
-                                          child: const Align(
-                                            alignment: Alignment.centerRight,
-                                            child: CircleAvatar(
-                                              radius: 28,
-                                              backgroundColor: Colors.white,
-                                              child: Icon(
-                                                Icons.chevron_right,
-                                                color: Color(0xffA5957E),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
+                                      child: ImageCard(
+                                        assetPath: 'assets/images/window.jpg',
+                                        sliderText: "Trefoleva St., 43",
+                                        textOpacity: _windowAnimation.value == 1 ? _windowAnimation.value : 0,
+                                        sliderWidth: _windowAnimation.value *
+                                            MediaQuery.of(context).size.width,
                                       ),
                                     ),
                                     const SizedBox(
                                       height: 10,
                                     ),
                                     Expanded(
-                                      child: Container(
-                                        decoration: const BoxDecoration(
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(32),
-                                          ),
-                                          image: DecorationImage(
-                                            image: AssetImage(
-                                              'assets/images/sitting_room.jpg',
-                                            ),
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
+                                      child: ImageCard(
+                                        assetPath:
+                                            'assets/images/sitting_room.jpg',
+                                        sliderText: "Sedova St., 22",
+                                        textOpacity: _bottomImageAnimation.value == 1 ? _bottomImageAnimation.value : 0,
+                                        sliderWidth: _bottomImageAnimation
+                                                .value *
+                                            MediaQuery.of(context).size.width,
                                       ),
                                     ),
                                   ],
