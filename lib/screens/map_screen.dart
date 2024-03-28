@@ -77,10 +77,12 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
         tween: Tween<double>(begin: 0.5, end: 1),
         weight: 50,
       ),
-    ]).animate(CurvedAnimation(
-      parent: _bubbleController,
-      curve: const Interval(0.6, 0.8, curve: Curves.easeIn),
-    ));
+    ]).animate(
+      CurvedAnimation(
+        parent: _bubbleController,
+        curve: const Interval(0.6, 0.8, curve: Curves.easeIn),
+      ),
+    );
 
     // Start the main animation
     _animationController.forward();
