@@ -77,8 +77,7 @@ class _MoniepointHomeState extends State<MoniepointHome>
             bottom: 18,
             right: 56,
           ),
-          padding: const EdgeInsets.all(2),
-          width: double.infinity,
+          padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
           height: 64,
           decoration: const BoxDecoration(
             color: Color(0xff2B2B2B),
@@ -87,7 +86,7 @@ class _MoniepointHomeState extends State<MoniepointHome>
             ),
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ...NavEnum.values.map(
                 (item) => CustomNavItem(

@@ -9,13 +9,20 @@ class MapScreen extends StatefulWidget {
   State<MapScreen> createState() => _MapScreenState();
 }
 
-class _MapScreenState extends State<MapScreen>
-    with SingleTickerProviderStateMixin {
+class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
   late final AnimationController _animationController;
 
   late final Animation<double> _scaleAnimation;
   late final Animation<double> _bubbleScaleAnimation;
   late final Animation<double> _bubbleTextOpacity;
+
+  late final AnimationController _bubbleController;
+
+  late final Animation<double> _bubbleWidthAnimation;
+  late final Animation<double> _bubbleIconOpacityAnimation;
+
+  double _bubbleWith = 96;
+  bool _isWithoutAnyLayer = false;
 
   MapMenu _selectedPopup = MapMenu.price;
 
@@ -49,19 +56,51 @@ class _MapScreenState extends State<MapScreen>
       ),
     );
 
+    _bubbleController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    );
+
+    _bubbleWidthAnimation = Tween<double>(begin: _bubbleWith, end: 48).animate(
+      CurvedAnimation(
+        parent: _bubbleController,
+        curve: const Interval(0.0, 1.0, curve: Curves.easeIn),
+      ),
+    );
+
+    _bubbleIconOpacityAnimation = TweenSequence(<TweenSequenceItem<double>>[
+      TweenSequenceItem<double>(
+        tween: Tween<double>(begin: 0, end: 0.5),
+        weight: 50,
+      ),
+      TweenSequenceItem<double>(
+        tween: Tween<double>(begin: 0.5, end: 1),
+        weight: 50,
+      ),
+    ]).animate(CurvedAnimation(
+      parent: _bubbleController,
+      curve: const Interval(0.6, 0.8, curve: Curves.easeIn),
+    ));
+
     _animationController.forward();
   }
 
   @override
   void dispose() {
     _animationController.dispose();
+    _bubbleController.dispose();
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: _animationController,
+      // animation: _animationController,
+      animation: Listenable.merge([
+        _animationController,
+        _bubbleController,
+      ]),
       builder: (context, child) => Stack(
         children: [
           Image.asset(
@@ -159,6 +198,9 @@ class _MapScreenState extends State<MapScreen>
                       child: MapBubble(
                         mapValue: "10,3 mn P",
                         textOpacity: _bubbleTextOpacity.value,
+                        bubbleWidth: _bubbleWidthAnimation.value,
+                        showWithoutAnyLayer: _isWithoutAnyLayer,
+                        iconOpacity: _bubbleIconOpacityAnimation.value,
                       ),
                     ),
                   ),
@@ -172,6 +214,9 @@ class _MapScreenState extends State<MapScreen>
                       child: MapBubble(
                         mapValue: "11 mn P",
                         textOpacity: _bubbleTextOpacity.value,
+                        bubbleWidth: _bubbleWidthAnimation.value,
+                        showWithoutAnyLayer: _isWithoutAnyLayer,
+                        iconOpacity: _bubbleIconOpacityAnimation.value,
                       ),
                     ),
                   ),
@@ -185,6 +230,9 @@ class _MapScreenState extends State<MapScreen>
                       child: MapBubble(
                         mapValue: "7,8 mn P",
                         textOpacity: _bubbleTextOpacity.value,
+                        bubbleWidth: _bubbleWidthAnimation.value,
+                        showWithoutAnyLayer: _isWithoutAnyLayer,
+                        iconOpacity: _bubbleIconOpacityAnimation.value,
                       ),
                     ),
                   ),
@@ -199,6 +247,9 @@ class _MapScreenState extends State<MapScreen>
                       child: MapBubble(
                         mapValue: "6,95 mn P",
                         textOpacity: _bubbleTextOpacity.value,
+                        bubbleWidth: _bubbleWidthAnimation.value,
+                        showWithoutAnyLayer: _isWithoutAnyLayer,
+                        iconOpacity: _bubbleIconOpacityAnimation.value,
                       ),
                     ),
                   ),
@@ -212,6 +263,9 @@ class _MapScreenState extends State<MapScreen>
                       child: MapBubble(
                         mapValue: "7,8 mn P",
                         textOpacity: _bubbleTextOpacity.value,
+                        bubbleWidth: _bubbleWidthAnimation.value,
+                        showWithoutAnyLayer: _isWithoutAnyLayer,
+                        iconOpacity: _bubbleIconOpacityAnimation.value,
                       ),
                     ),
                   ),
@@ -225,6 +279,9 @@ class _MapScreenState extends State<MapScreen>
                       child: MapBubble(
                         mapValue: "7,8 mn P",
                         textOpacity: _bubbleTextOpacity.value,
+                        bubbleWidth: _bubbleWidthAnimation.value,
+                        showWithoutAnyLayer: _isWithoutAnyLayer,
+                        iconOpacity: _bubbleIconOpacityAnimation.value,
                       ),
                     ),
                   ),
@@ -268,7 +325,23 @@ class _MapScreenState extends State<MapScreen>
                               ...MapMenu.values.map(
                                 (menu) => PopupMenuItem(
                                   onTap: () {
-                                    setState(() => _selectedPopup = menu);
+                                    if (menu.isWithoutAnyLayer) {
+                                      _bubbleController.forward();
+                                      setState(() {
+                                        _selectedPopup = menu;
+                                        _isWithoutAnyLayer = true;
+                                        _bubbleWith = 48;
+                                      });
+                                    }
+
+                                    if (menu.isPrice) {
+                                      _bubbleController.reverse();
+                                      setState(() {
+                                        _selectedPopup = menu;
+                                        _isWithoutAnyLayer = false;
+                                        _bubbleWith = 96;
+                                      });
+                                    }
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
@@ -302,8 +375,9 @@ class _MapScreenState extends State<MapScreen>
                             radius: 28,
                             backgroundColor:
                                 const Color(0xff737373).withAlpha(128),
-                            child: const Icon(
-                              Icons.account_balance_wallet_outlined,
+                            child: Icon(
+                              // Icons.account_balance_wallet_outlined,
+                              _selectedPopup.icon,
                               color: Colors.white,
                             ),
                           ),

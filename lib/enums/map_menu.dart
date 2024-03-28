@@ -26,3 +26,10 @@ enum MapMenu {
     this.value,
   );
 }
+
+extension MapMenuX on MapMenu {
+  bool get isCosyAreas => this == MapMenu.cosyAreas;
+  bool get isPrice => this == MapMenu.price;
+  bool get isInfrastructure => this == MapMenu.infrastructure;
+  bool get isWithoutAnyLayer => this == MapMenu.withoutAnyLayer;
+}
