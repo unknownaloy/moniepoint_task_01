@@ -15,7 +15,7 @@ class MapBubble extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       padding: const EdgeInsets.all(10),
-      width: 88,
+      width: 96,
       height: 48,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(

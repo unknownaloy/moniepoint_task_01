@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moniepoint_task/enums/map_menu.dart';
 import 'package:moniepoint_task/widgets/map_bubble.dart';
 
 class MapScreen extends StatefulWidget {
@@ -15,6 +16,8 @@ class _MapScreenState extends State<MapScreen>
   late final Animation<double> _scaleAnimation;
   late final Animation<double> _bubbleScaleAnimation;
   late final Animation<double> _bubbleTextOpacity;
+
+  MapMenu _selectedPopup = MapMenu.price;
 
   @override
   void initState() {
@@ -247,13 +250,62 @@ class _MapScreenState extends State<MapScreen>
                       Transform.scale(
                         scale: _scaleAnimation.value,
                         alignment: Alignment.center,
-                        child: CircleAvatar(
-                          radius: 28,
-                          backgroundColor:
-                              const Color(0xff737373).withAlpha(128),
-                          child: const Icon(
-                            Icons.account_balance_wallet_outlined,
-                            color: Colors.white,
+                        child: PopupMenuButton(
+                          initialValue: MapMenu.price,
+                          offset: const Offset(0, -152),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(16),
+                            ),
+                          ),
+                          color: Colors.white,
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(
+                            maxWidth: 192,
+                          ),
+                          itemBuilder: (BuildContext context) {
+                            return <PopupMenuEntry>[
+                              ...MapMenu.values.map(
+                                (menu) => PopupMenuItem(
+                                  onTap: () {
+                                    setState(() => _selectedPopup = menu);
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(
+                                        menu.icon,
+                                        size: 18,
+                                        color: _selectedPopup == menu
+                                            ? const Color(0xffFC9E12)
+                                            : const Color(0xff757575),
+                                      ),
+                                      const SizedBox(
+                                        width: 4,
+                                      ),
+                                      Text(
+                                        menu.value,
+                                        style: TextStyle(
+                                          color: _selectedPopup == menu
+                                              ? const Color(0xffFC9E12)
+                                              : const Color(0xff757575),
+                                          fontSize: 12,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ];
+                          },
+                          child: CircleAvatar(
+                            radius: 28,
+                            backgroundColor:
+                                const Color(0xff737373).withAlpha(128),
+                            child: const Icon(
+                              Icons.account_balance_wallet_outlined,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
