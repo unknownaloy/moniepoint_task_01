@@ -54,7 +54,7 @@ class RentOffersUi extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 10,
+            height: 2,
           ),
           const Text(
             "offers",

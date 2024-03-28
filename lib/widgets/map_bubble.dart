@@ -41,13 +41,11 @@ class MapBubble extends StatelessWidget {
             )
           : Opacity(
               opacity: textOpacity,
-              child: Flexible(
-                child: Text(
-                  mapValue,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                  ),
+              child: Text(
+                mapValue,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),

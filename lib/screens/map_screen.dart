@@ -97,7 +97,6 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      // animation: _animationController,
       animation: Listenable.merge([
         _animationController,
         _bubbleController,
@@ -377,7 +376,6 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                             backgroundColor:
                                 const Color(0xff737373).withAlpha(128),
                             child: Icon(
-                              // Icons.account_balance_wallet_outlined,
                               _selectedPopup.icon,
                               color: Colors.white,
                             ),

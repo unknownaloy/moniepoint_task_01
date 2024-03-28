@@ -10,7 +10,8 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _animationController;
 
   // Animation for the appbar with entails the location and profile avatar
@@ -167,6 +168,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       body: AnimatedBuilder(
         animation: _animationController,
         builder: (context, child) => Container(
@@ -203,7 +205,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   child: Opacity(
                     opacity: _appbarOpacity.value,
                     child: const Row(
-                      // mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
@@ -233,6 +234,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     alignment: Alignment.center,
                     child: const CircleAvatar(
                       radius: 48,
+                      backgroundColor: Color(0xffFC9E12),
                       backgroundImage: AssetImage('assets/images/profile.jpg'),
                     ),
                   ),
@@ -268,32 +270,29 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       color: Colors.transparent,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           Container(
                             height: _firstContentAnimation.value * 48,
                             color: Colors.transparent,
-                            child: const Flexible(
-                              child: Text(
-                                "let's select your",
-                                style: TextStyle(
-                                  fontSize: 40,
-                                  color: Color(0xff232220),
-                                  height: 1,
-                                ),
+                            child: const Text(
+                              "let's select your",
+                              style: TextStyle(
+                                fontSize: 40,
+                                color: Color(0xff232220),
+                                height: 1,
                               ),
                             ),
                           ),
                           Container(
                             height: _secondContentAnimation.value * 48,
                             color: Colors.transparent,
-                            child: const Flexible(
-                              child: Text(
-                                "perfect place",
-                                style: TextStyle(
-                                  fontSize: 40,
-                                  color: Color(0xff232220),
-                                  height: 1,
-                                ),
+                            child: const Text(
+                              "perfect place",
+                              style: TextStyle(
+                                fontSize: 40,
+                                color: Color(0xff232220),
+                                height: 1,
                               ),
                             ),
                           ),
