@@ -29,7 +29,7 @@ class _MoniepointHomeState extends State<MoniepointHome>
     }
 
     return Container(
-      color: Colors.purple,
+      color: const Color(0xffA5957E),
     );
   }
 

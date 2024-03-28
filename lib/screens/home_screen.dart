@@ -13,8 +13,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late final AnimationController _animationController;
 
+  // Animation for the appbar with entails the location and profile avatar
   late final Animation<double> _appbarAnimation;
+  late final Animation<double> _appbarOpacity;
 
+  // Animation for the name
   late final Animation<double> _nameOpacityAnimation;
 
   late final Animation<double> _firstContentAnimation;
@@ -43,6 +46,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         parent: _animationController,
         curve: const Interval(
           0.0,
+          0.15,
+          curve: Curves.easeIn,
+        ),
+      ),
+    );
+
+    _appbarOpacity = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: const Interval(
+          0.13,
           0.15,
           curve: Curves.easeIn,
         ),
@@ -88,7 +102,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         curve: const Interval(
           0.18,
           0.32,
-          curve: Curves.easeIn,
+          curve: Curves.easeOutCirc,
+          // curve: Curves.easeOutQuint,
         ),
       ),
     );
@@ -186,7 +201,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     ),
                   ),
                   child: Opacity(
-                    opacity: _appbarAnimation.value,
+                    opacity: _appbarOpacity.value,
                     child: const Row(
                       // mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -247,38 +262,42 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     const SizedBox(
                       height: 8,
                     ),
-                    Padding(
+                    Container(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Container(
-                        height: _firstContentAnimation.value * 48,
-                        color: Colors.transparent,
-                        child: const Flexible(
-                          child: Text(
-                            "let's select your",
-                            style: TextStyle(
-                              fontSize: 40,
-                              color: Color(0xff232220),
-                              height: 1,
+                      height: 96,
+                      color: Colors.transparent,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Container(
+                            height: _firstContentAnimation.value * 48,
+                            color: Colors.transparent,
+                            child: const Flexible(
+                              child: Text(
+                                "let's select your",
+                                style: TextStyle(
+                                  fontSize: 40,
+                                  color: Color(0xff232220),
+                                  height: 1,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Container(
-                        height: _secondContentAnimation.value * 48,
-                        color: Colors.transparent,
-                        child: const Flexible(
-                          child: Text(
-                            "perfect place",
-                            style: TextStyle(
-                              fontSize: 40,
-                              color: Color(0xff232220),
-                              height: 1,
+                          Container(
+                            height: _secondContentAnimation.value * 48,
+                            color: Colors.transparent,
+                            child: const Flexible(
+                              child: Text(
+                                "perfect place",
+                                style: TextStyle(
+                                  fontSize: 40,
+                                  color: Color(0xff232220),
+                                  height: 1,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                        ],
                       ),
                     ),
                     const SizedBox(

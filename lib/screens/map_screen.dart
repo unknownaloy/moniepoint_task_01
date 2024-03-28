@@ -82,6 +82,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
       curve: const Interval(0.6, 0.8, curve: Curves.easeIn),
     ));
 
+    // Start the main animation
     _animationController.forward();
   }
 
