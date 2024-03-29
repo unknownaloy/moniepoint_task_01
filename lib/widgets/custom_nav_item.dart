@@ -35,21 +35,21 @@ class _CustomNavItemState extends State<CustomNavItem>
 
     _innerController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(milliseconds: 1500),
     )..addStatusListener((status) {
         if (status == AnimationStatus.forward) {
           setState(() {
             _showColor = true;
 
-            Future.delayed(const Duration(milliseconds: 500), () {
+            Future.delayed(const Duration(milliseconds: 375), () {
               _showOuterCircle = true;
             });
 
-            Future.delayed(const Duration(milliseconds: 1200), () {
+            Future.delayed(const Duration(milliseconds: 900), () {
               _showOuterCircle = false;
             });
 
-            Future.delayed(const Duration(milliseconds: 1500), () {
+            Future.delayed(const Duration(milliseconds: 1125), () {
               _showColor = false;
             });
           });
@@ -127,7 +127,7 @@ class _CustomNavItemState extends State<CustomNavItem>
           alignment: Alignment.center,
           children: [
             AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 375),
               curve: Curves.decelerate,
               alignment: Alignment.center,
               height: _showColor
