@@ -89,12 +89,15 @@ class _MoniepointHomeState extends State<MoniepointHome>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ...NavEnum.values.map(
-                (item) => CustomNavItem(
-                  icon: item.icon,
-                  isActive: item == _selectedItem,
-                  onTap: () {
-                    setState(() => _selectedItem = item);
-                  },
+                (item) => SizedBox(
+                  width: 52, height: 52,
+                  child: CustomNavItem(
+                    icon: item.icon,
+                    isActive: item == _selectedItem,
+                    onTap: () {
+                      setState(() => _selectedItem = item);
+                    },
+                  ),
                 ),
               ),
             ],
