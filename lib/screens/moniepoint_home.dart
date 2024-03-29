@@ -75,7 +75,7 @@ class _MoniepointHomeState extends State<MoniepointHome>
           margin: const EdgeInsets.only(
             left: 56,
             bottom: 18,
-            right: 56,
+            right: 32,
           ),
           padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
           height: 64,

@@ -184,6 +184,7 @@ class _HomeScreenState extends State<HomeScreen>
             ),
           ),
           child: CustomScrollView(
+            physics: const BouncingScrollPhysics(),
             slivers: [
               SliverAppBar(
                 backgroundColor: Colors.transparent,
@@ -240,175 +241,149 @@ class _HomeScreenState extends State<HomeScreen>
                   ),
                 ],
               ),
-              SliverToBoxAdapter(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const SizedBox(
-                      height: 40,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Opacity(
-                        opacity: _nameOpacityAnimation.value,
-                        child: const Text(
-                          'Hi, Marina',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xffA5957E),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      height: 96,
-                      color: Colors.transparent,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                            height: _firstContentAnimation.value * 48,
-                            color: Colors.transparent,
-                            child: const Text(
-                              "let's select your",
-                              style: TextStyle(
-                                fontSize: 40,
-                                color: Color(0xff232220),
-                                height: 1,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            height: _secondContentAnimation.value * 48,
-                            color: Colors.transparent,
-                            child: const Text(
-                              "perfect place",
-                              style: TextStyle(
-                                fontSize: 40,
-                                color: Color(0xff232220),
-                                height: 1,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Transform.scale(
-                              scale: _buyAndRentAnimation.value,
-                              child: BuyOffersUi(
-                                value: _buyAndRentAnimation.value * 1034,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            flex: 1,
-                            child: Transform.scale(
-                              scale: _buyAndRentAnimation.value,
-                              child: RentOffersUi(
-                                value: _buyAndRentAnimation.value * 2212,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                  ],
-                ),
-              ),
               SliverFillRemaining(
                 hasScrollBody: false,
-                child: SlideTransition(
-                  position: _slideAnimation,
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    width: double.infinity,
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(32),
-                      ),
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                child: Stack(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        ImageCard(
-                          assetPath: 'assets/images/kitchen.jpg',
-                          sliderText: "Gladkova St., 25",
-                          textOpacity: _kitchenAnimation.value == 1
-                              ? _kitchenAnimation.value
-                              : 0,
-                          sliderTextAlignment: Alignment.center,
-                          sliderWidth: _kitchenAnimation.value *
-                              MediaQuery.of(context).size.width,
-                          sliderHeight: 56,
-                          height: 208,
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Opacity(
+                            opacity: _nameOpacityAnimation.value,
+                            child: const Text(
+                              'Hi, Marina',
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xffA5957E),
+                              ),
+                            ),
+                          ),
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 8,
                         ),
-                        Expanded(
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          height: 96,
+                          color: Colors.transparent,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                height: _firstContentAnimation.value * 48,
+                                color: Colors.transparent,
+                                child: const Text(
+                                  "let's select your",
+                                  style: TextStyle(
+                                    fontSize: 40,
+                                    color: Color(0xff232220),
+                                    height: 1,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                height: _secondContentAnimation.value * 48,
+                                color: Colors.transparent,
+                                child: const Text(
+                                  "perfect place",
+                                  style: TextStyle(
+                                    fontSize: 40,
+                                    color: Color(0xff232220),
+                                    height: 1,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 32,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Expanded(
-                                child: ImageCard(
-                                  assetPath: 'assets/images/chair_on_rug.jpg',
-                                  sliderText: "Gubina St., 11",
-                                  textOpacity: _bottomImageAnimation.value == 1
-                                      ? _bottomImageAnimation.value
-                                      : 0,
-                                  height: 384,
-                                  sliderWidth: _bottomImageAnimation.value *
-                                      MediaQuery.of(context).size.width,
+                                flex: 1,
+                                child: Transform.scale(
+                                  scale: _buyAndRentAnimation.value,
+                                  child: BuyOffersUi(
+                                    value: _buyAndRentAnimation.value * 1034,
+                                  ),
                                 ),
                               ),
                               const SizedBox(
                                 width: 10,
                               ),
                               Expanded(
-                                child: Column(
+                                flex: 1,
+                                child: Transform.scale(
+                                  scale: _buyAndRentAnimation.value,
+                                  child: RentOffersUi(
+                                    value: _buyAndRentAnimation.value * 2212,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 32,
+                        ),
+                      ],
+                    ),
+                    Positioned.fill(
+                      left: 0,
+                      right: 0,
+                      top: 208,
+                      child: SlideTransition(
+                        position: _slideAnimation,
+                        child: Container(
+                          padding: const EdgeInsets.all(8),
+                          width: double.infinity,
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(32),
+                            ),
+                            color: Colors.white,
+                          ),
+                          child: Column(
+                            children: [
+                              // Top Container
+                              ImageCard(
+                                assetPath: 'assets/images/kitchen.jpg',
+                                sliderText: "Gladkova St., 25",
+                                textOpacity: _kitchenAnimation.value == 1
+                                    ? _kitchenAnimation.value
+                                    : 0,
+                                sliderTextAlignment: Alignment.center,
+                                sliderWidth: _kitchenAnimation.value *
+                                    MediaQuery.of(context).size.width,
+                                sliderHeight: 56,
+                                height: 208,
+                              ),
+
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              // Bottom Containers
+                              Expanded(
+                                child: Row(
                                   children: [
-                                    Expanded(
-                                      child: ImageCard(
-                                        assetPath: 'assets/images/window.jpg',
-                                        sliderText: "Trefoleva St., 43",
-                                        textOpacity: _windowAnimation.value == 1
-                                            ? _windowAnimation.value
-                                            : 0,
-                                        sliderWidth: _windowAnimation.value *
-                                            MediaQuery.of(context).size.width,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
+                                    // Left Container
                                     Expanded(
                                       child: ImageCard(
                                         assetPath:
-                                            'assets/images/sitting_room.jpg',
-                                        sliderText: "Sedova St., 22",
+                                            'assets/images/chair_on_rug.jpg',
+                                        sliderText: "Gubina St., 11",
                                         textOpacity:
                                             _bottomImageAnimation.value == 1
                                                 ? _bottomImageAnimation.value
@@ -418,15 +393,61 @@ class _HomeScreenState extends State<HomeScreen>
                                             MediaQuery.of(context).size.width,
                                       ),
                                     ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    // Right Containers
+                                    Expanded(
+                                      child: Column(
+                                        children: [
+                                          Expanded(
+                                            child: ImageCard(
+                                              assetPath:
+                                                  'assets/images/window.jpg',
+                                              sliderText: "Trefoleva St., 43",
+                                              textOpacity:
+                                                  _windowAnimation.value == 1
+                                                      ? _windowAnimation.value
+                                                      : 0,
+                                              sliderWidth:
+                                                  _windowAnimation.value *
+                                                      MediaQuery.of(context)
+                                                          .size
+                                                          .width,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Expanded(
+                                            child: ImageCard(
+                                              assetPath:
+                                                  'assets/images/sitting_room.jpg',
+                                              sliderText: "Sedova St., 22",
+                                              textOpacity: _bottomImageAnimation
+                                                          .value ==
+                                                      1
+                                                  ? _bottomImageAnimation.value
+                                                  : 0,
+                                              sliderWidth:
+                                                  _bottomImageAnimation.value *
+                                                      MediaQuery.of(context)
+                                                          .size
+                                                          .width,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
                             ],
                           ),
                         ),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ],
