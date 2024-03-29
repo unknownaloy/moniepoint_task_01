@@ -90,7 +90,8 @@ class _MoniepointHomeState extends State<MoniepointHome>
             children: [
               ...NavEnum.values.map(
                 (item) => SizedBox(
-                  width: 52, height: 52,
+                  width: 52,
+                  height: 52,
                   child: CustomNavItem(
                     icon: item.icon,
                     isActive: item == _selectedItem,

@@ -18,7 +18,7 @@ class CustomNavItem extends StatefulWidget {
 
 class _CustomNavItemState extends State<CustomNavItem>
     with TickerProviderStateMixin {
-  late final AnimationController _innerController;
+  late final AnimationController _animationController;
 
   late final Animation<double> _initialContainerSize;
   late final Animation<double> _initialBorderSize;
@@ -33,7 +33,7 @@ class _CustomNavItemState extends State<CustomNavItem>
   void initState() {
     super.initState();
 
-    _innerController = AnimationController(
+    _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1500),
     )..addStatusListener((status) {
@@ -58,7 +58,7 @@ class _CustomNavItemState extends State<CustomNavItem>
 
     _initialContainerSize = Tween<double>(begin: 58, end: 40).animate(
       CurvedAnimation(
-        parent: _innerController,
+        parent: _animationController,
         curve: const Interval(
           0.0,
           0.25,
@@ -78,14 +78,14 @@ class _CustomNavItemState extends State<CustomNavItem>
       ),
     ]).animate(
       CurvedAnimation(
-        parent: _innerController,
+        parent: _animationController,
         curve: const Interval(0.0, 0.75, curve: Curves.easeIn),
       ),
     );
 
     _secondContainerSize = Tween<double>(begin: 40, end: 58).animate(
       CurvedAnimation(
-        parent: _innerController,
+        parent: _animationController,
         curve: const Interval(
           0.25,
           0.50,
@@ -96,7 +96,7 @@ class _CustomNavItemState extends State<CustomNavItem>
 
     _secondBorderSize = Tween<double>(begin: 8, end: 0).animate(
       CurvedAnimation(
-        parent: _innerController,
+        parent: _animationController,
         curve: const Interval(
           0.25,
           0.50,
@@ -108,7 +108,7 @@ class _CustomNavItemState extends State<CustomNavItem>
 
   @override
   void dispose() {
-    _innerController.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 
@@ -117,12 +117,12 @@ class _CustomNavItemState extends State<CustomNavItem>
     return GestureDetector(
       onTap: () async {
         widget.onTap();
-        _innerController
+        _animationController
           ..reset()
           ..forward();
       },
       child: AnimatedBuilder(
-        animation: _innerController,
+        animation: _animationController,
         builder: (context, child) => Stack(
           alignment: Alignment.center,
           children: [
